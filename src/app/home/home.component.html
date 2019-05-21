@@ -3,7 +3,7 @@
     <h2 class="text-center text-uppercase text-secondary mb-0">Portfolio</h2>
     <hr class="star-dark mb-5" />
     <div class="row">
-      <div class="col-md-6 col-lg-4">
+      <div class="col-md-6 col-lg-4" *ngFor="let portfolio of portfolios">
         <a class="portfolio-item d-block mx-auto" href="#portfolio-modal-1">
           <div
             class="portfolio-item-caption d-flex position-absolute h-100 w-100"
@@ -15,131 +15,19 @@
                 class="fas fa-search-plus fa-3x"
                 onclick="document.getElementById('id01').style.display='block'"
                 style="width:auto;"
+                (click)="getPortfolio(portfolio.id)"
               ></i>
             </div>
           </div>
-          <img
-            class="img-fluid"
-            src="https://res.cloudinary.com/digiapps/image/upload/v1557854571/login1_off2jr.png"
-            alt=""
-          />
-        </a>
-      </div>
-      <div class="col-md-6 col-lg-4">
-        <a class="portfolio-item d-block mx-auto" href="#portfolio-modal-2">
-          <div
-            class="portfolio-item-caption d-flex position-absolute h-100 w-100"
-          >
-            <div
-              class="portfolio-item-caption-content my-auto w-100 text-center text-white"
-            >
-              <i
-                class="fas fa-search-plus fa-3x"
-                onclick="document.getElementById('id02').style.display='block'"
-                style="width:auto;"
-              ></i>
-            </div>
-          </div>
-          <img
-            class="img-fluid"
-            src="https://res.cloudinary.com/digiapps/image/upload/v1557854581/login2_vg2ywp.png"
-            alt=""
-          />
-        </a>
-      </div>
-      <div class="col-md-6 col-lg-4">
-        <a class="portfolio-item d-block mx-auto" href="#portfolio-modal-3">
-          <div
-            class="portfolio-item-caption d-flex position-absolute h-100 w-100"
-          >
-            <div
-              class="portfolio-item-caption-content my-auto w-100 text-center text-white"
-            >
-              <i
-                class="fas fa-search-plus fa-3x"
-                onclick="document.getElementById('id03').style.display='block'"
-                style="width:auto;"
-              ></i>
-            </div>
-          </div>
-          <img
-            class="img-fluid"
-            src="https://res.cloudinary.com/digiapps/image/upload/v1557854588/addquestion_dycgid.png"
-            alt=""
-          />
-        </a>
-      </div>
-      <div class="col-md-6 col-lg-4">
-        <a class="portfolio-item d-block mx-auto" href="#portfolio-modal-4">
-          <div
-            class="portfolio-item-caption d-flex position-absolute h-100 w-100"
-          >
-            <div
-              class="portfolio-item-caption-content my-auto w-100 text-center text-white"
-            >
-              <i
-                class="fas fa-search-plus fa-3x"
-                onclick="document.getElementById('id04').style.display='block'"
-                style="width:auto;"
-              ></i>
-            </div>
-          </div>
-          <img
-            class="img-fluid"
-            src="https://res.cloudinary.com/digiapps/image/upload/v1557854300/Student_dashboard_hyakws.jpg"
-            alt=""
-          />
-        </a>
-      </div>
-      <div class="col-md-6 col-lg-4">
-        <a class="portfolio-item d-block mx-auto" href="#portfolio-modal-5">
-          <div
-            class="portfolio-item-caption d-flex position-absolute h-100 w-100"
-          >
-            <div
-              class="portfolio-item-caption-content my-auto w-100 text-center text-white"
-            >
-              <i
-                class="fas fa-search-plus fa-3x"
-                onclick="document.getElementById('id05').style.display='block'"
-                style="width:auto;"
-              ></i>
-            </div>
-          </div>
-          <img
-            class="img-fluid"
-            src="https://res.cloudinary.com/digiapps/image/upload/v1557854297/student_login_g9qxak.jpg"
-            alt=""
-          />
-        </a>
-      </div>
-      <div class="col-md-6 col-lg-4">
-        <a class="portfolio-item d-block mx-auto" href="#portfolio-modal-6">
-          <div
-            class="portfolio-item-caption d-flex position-absolute h-100 w-100"
-          >
-            <div
-              class="portfolio-item-caption-content my-auto w-100 text-center text-white"
-            >
-              <i
-                class="fas fa-search-plus fa-3x"
-                onclick="document.getElementById('id06').style.display='block'"
-                style="width:auto;"
-              ></i>
-            </div>
-          </div>
-          <img
-            class="img-fluid"
-            src="https://res.cloudinary.com/digiapps/image/upload/v1557854462/investigations_ykwhul.jpg"
-            alt=""
-          />
+          <img class="img-fluid" [(src)]="portfolio.imageUrl" alt="" />
         </a>
       </div>
     </div>
   </div>
   <!--Magnifier-->
+
   <div id="id01" class="modal">
-    <form class="modal-content animate">
+    <form class="modal-content animate" *ngFor="let portfolio of portfolios">
       <div class="imgcontainer">
         <span
           onclick="document.getElementById('id01').style.display='none'"
@@ -147,15 +35,16 @@
           title="Close"
           >&times;</span
         >
+        <h3>{{ portfolio.title }}</h3>
         <img
-          src="https://res.cloudinary.com/digiapps/image/upload/v1557854571/login1_off2jr.png"
-          alt="p1"
+          [(src)]="portfolio.imageUrl"
+          [alt]="portfolio.title"
           class="avatar"
         />
       </div>
 
       <div class="container">
-        <p>Lorem Ips</p>
+        <p>{{ portfolio.description }}</p>
       </div>
 
       <div class="container" style="background-color:#f1f1f1">
@@ -170,197 +59,11 @@
     </form>
   </div>
 
-  <div id="id02" class="modal2">
-    <form class="modal-content animate">
-      <div class="imgcontainer">
-        <span
-          onclick="document.getElementById('id02').style.display='none'"
-          class="close"
-          title="Close"
-          >&times;</span
-        >
-        <img
-          src="https://res.cloudinary.com/digiapps/image/upload/v1557854581/login2_vg2ywp.png"
-          alt="p1"
-          class="avatar"
-        />
-      </div>
-
-      <div class="container">
-        <p>Lorem Ips 2</p>
-      </div>
-
-      <div class="container" style="background-color:#f1f1f1">
-        <button
-          type="button"
-          onclick="document.getElementById('id02').style.display='none'"
-          class="cancelbtn"
-        >
-          Cancel
-        </button>
-      </div>
-    </form>
-  </div>
-  <div id="id03" class="modal3">
-    <form class="modal-content animate">
-      <div class="imgcontainer">
-        <span
-          onclick="document.getElementById('id03').style.display='none'"
-          class="close"
-          title="Close"
-          >&times;</span
-        >
-        <img
-          src="https://res.cloudinary.com/digiapps/image/upload/v1557854588/addquestion_dycgid.png"
-          alt="p1"
-          class="avatar"
-        />
-      </div>
-
-      <div class="container">
-        <p>Lorem Ips</p>
-      </div>
-
-      <div class="container" style="background-color:#f1f1f1">
-        <button
-          type="button"
-          onclick="document.getElementById('id03').style.display='none'"
-          class="cancelbtn"
-        >
-          Cancel
-        </button>
-      </div>
-    </form>
-  </div>
-  <div id="id04" class="modal4">
-    <form class="modal-content animate">
-      <div class="imgcontainer">
-        <span
-          onclick="document.getElementById('id04').style.display='none'"
-          class="close"
-          title="Close"
-          >&times;</span
-        >
-        <img
-          src="https://res.cloudinary.com/digiapps/image/upload/v1557854300/Student_dashboard_hyakws.jpg"
-          alt="p1"
-          class="avatar"
-        />
-      </div>
-
-      <div class="container">
-        <p>Lorem Ips</p>
-      </div>
-
-      <div class="container" style="background-color:#f1f1f1">
-        <button
-          type="button"
-          onclick="document.getElementById('id04').style.display='none'"
-          class="cancelbtn"
-        >
-          Cancel
-        </button>
-      </div>
-    </form>
-  </div>
-  <div id="id05" class="modal5">
-    <form class="modal-content animate">
-      <div class="imgcontainer">
-        <span
-          onclick="document.getElementById('id05').style.display='none'"
-          class="close"
-          title="Close"
-          >&times;</span
-        >
-        <img
-          src="https://res.cloudinary.com/digiapps/image/upload/v1557854297/student_login_g9qxak.jpg"
-          alt="p1"
-          class="avatar"
-        />
-      </div>
-
-      <div class="container">
-        <p>Lorem Ips</p>
-      </div>
-
-      <div class="container" style="background-color:#f1f1f1">
-        <button
-          type="button"
-          onclick="document.getElementById('id05').style.display='none'"
-          class="cancelbtn"
-        >
-          Cancel
-        </button>
-      </div>
-    </form>
-  </div>
-  <div id="id06" class="modal6">
-    <form class="modal-content animate">
-      <div class="imgcontainer">
-        <span
-          onclick="document.getElementById('id06').style.display='none'"
-          class="close"
-          title="Close"
-          >&times;</span
-        >
-        <img
-          src="https://res.cloudinary.com/digiapps/image/upload/v1557854442/rejected_view_sl1k3w.jpg"
-          alt="p1"
-          class="avatar"
-        />
-      </div>
-
-      <div class="container">
-        <p>Lorem Ips</p>
-      </div>
-
-      <div class="container" style="background-color:#f1f1f1">
-        <button
-          type="button"
-          onclick="document.getElementById('id06').style.display='none'"
-          class="cancelbtn"
-        >
-          Cancel
-        </button>
-      </div>
-    </form>
-  </div>
   <script>
     var modal = document.getElementById("id01");
-    var modal2 = document.getElementById("id02");
-    var modal3 = document.getElementById("id03");
-    var modal4 = document.getElementById("id04");
-    var modal5 = document.getElementById("id05");
-    var modal6 = document.getElementById("id06");
 
     window.onclick = function(event) {
       if (event.target == modal) {
-        modal.style.display = "none";
-      }
-    };
-
-    window.onclick = function(event) {
-      if (event.target == modal2) {
-        modal.style.display = "none";
-      }
-    };
-    window.onclick = function(event) {
-      if (event.target == modal3) {
-        modal.style.display = "none";
-      }
-    };
-    window.onclick = function(event) {
-      if (event.target == modal4) {
-        modal.style.display = "none";
-      }
-    };
-    window.onclick = function(event) {
-      if (event.target == modal5) {
-        modal.style.display = "none";
-      }
-    };
-    window.onclick = function(event) {
-      if (event.target == modal6) {
         modal.style.display = "none";
       }
     };
